@@ -81,12 +81,22 @@ rm -rf ~/.config/nvim
 rm -rf ~/.local/state/nvim
 rm -rf ~/.local/share/nvim
 ```
-1. Clone this repo into your Neovim config folder:
-
+1. Download this IDE.lua file into your Neovim config folder:
+Remember I created this for Nvim 0.11.4 for further versions I will work.
 ```bash
-git clone https://github.com/Vishnu-yes/Nvim-to-IDE ~/.config/nvim
+#make sure you have curl!
+curl -o ~/.config/nvim/init.lua https://raw.githubusercontent.com/Vishnu-yes/Neovim-to-IDE/main/IDE.lua
+
+#wget
+wget -O ~/.config/nvim/init.lua https://raw.githubusercontent.com/Vishnu-yes/Neovim-to-IDE/main/IDE.lua
 ```
 
+⚠️ You may see some warnings of Deprecated things don't worry they are normal won't break your nvim. 
+Use Ai or Professionals to get rid of the problem. But as of now even Claude and Chatgpt are using same type of deprecated things that's why You have to wait some months even years to get rid of those errors. 
+
+⚠️ Don't worry you are free to manipulate this config as it is just a single file and only 400+ lines of code (September, 2025 )
+
+⚠️ You can easily change themes via esc + : + colorscheme + tab key  + Left/Right keys for toggling up and down + Enter 
 2. Start Neovim and let lazy.nvim install plugins.
 
 
@@ -97,6 +107,9 @@ sudo apt install clangd
 pipx install pyright-langserver
 ```
 Then configure server paths inside IDE.lua.
+Yeah you have to configure according to your Version 
+1st Download the Lsps etc and paste them in Lsp sections.
+You must Use Ai for any edit. 
 
 
 
@@ -169,5 +182,8 @@ IDE Features → Git, debugging, formatting, autocompletion, and themes in one p
 Customizable → Edit the plugin tables in IDE.lua to add/remove plugins easily.
 
 
-
+~Config Generated with months of efforts done by Chatgpt/Claude. Onecd this cobfig was more than 900+ lines but Chatgpt made it small with many unique features.
+~This config was created to get the experience of IDE for Termux/Arm64/Aarch64 terminals.
+~Some themes may feel broken as theybare desgined for simplicity, use the modern themes for better modern Support. 
+#Jay Jagannath Ji!
 ---
