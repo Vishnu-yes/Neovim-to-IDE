@@ -1,6 +1,6 @@
 ---
 
-Neovim IDE Config (IDE.lua)
+SunVim (Your Pocket IDE)
 
 🚀 A clean, IDE-style Neovim configuration built on top of lazy.nvim.
 Designed for developers who want a polished coding experience without bloat.
@@ -8,6 +8,187 @@ Especially friendly for arm64 users by avoiding mason.nvim and supporting manual
 
 
 ---
+This Whole SunVim.zip is divided into three Child Folders of lua
+You have full controls over plugins. 
+This wont break until you did something wrong with init.lua or any User/ , simply user folder files.
+Make sure to Scroll a little down to learn how to Clone and How to Clone efficiently without breaking anything!
+```Bash
+❯ tree ~/.config/nvim
+/data/data/com.termux/files/home/.config/nvim
+├── init.lua
+├── lazy-lock.json
+└── lua
+    └── user
+        ├── Basics
+        │   ├── autoreload.lua
+        │   ├── env.lua
+        │   ├── mappings.lua
+        │   ├── options.lua
+        │   ├── plugins.lua
+        │   └── utilities.lua
+        ├── UI
+        │   ├── DAP_UI.lua
+        │   ├── IBL.lua
+        │   ├── bufferline.lua
+        │   ├── dashboard.lua
+        │   ├── diagonasticsigns.lua
+        │   ├── gitsigns.lua
+        │   ├── statusline.lua
+        │   └── ui.lua
+        └── config
+            ├── autopairs.lua
+            ├── cmp.lua
+            ├── custom
+            │   ├── harpoon.lua
+            │   ├── refactoring.lua
+            │   ├── sessions.lua
+            │   ├── todo.lua
+            │   └── trouble.lua
+            ├── formattor.lua
+            ├── lsp.lua
+            ├── notify.lua
+            ├── nvimtree.lua
+            ├── sessions.lua
+            ├── telescope.lua
+            ├── toggleterm.lua
+            └── workspace.lua
+```
+---
+
+📖 SunVim Installation Guide
+
+Welcome to SunVim — a lightweight, single-file Neovim IDE config (400+ lines, as of September 2025).
+This guide will help you install safely without breaking your existing setup.
+
+
+---
+
+⚠️ Before You Begin
+
+Backup is mandatory – never skip this step.
+
+You can test SunVim without overwriting your current config using NVIM_APPNAME.
+
+Works best with Neovim 0.11.4 (future versions may require adjustments).
+
+
+
+---
+
+📦 Step 1 – Backup Your Current Config
+
+# Backup your Neovim config
+cp -r ~/.config/nvim ~/nvim-backup-$(date +%Y%m%d)
+
+# (Optional) also backup plugin data
+cp -r ~/.local/share/nvim ~/nvim-data-backup-$(date +%Y%m%d)
+
+
+---
+
+🧹 Step 2 – Clean Old Config (Optional)
+
+⚠️ Do this only if you want to fully replace your config.
+If you just want to test SunVim safely, skip this and see “Safe Install” below.
+
+rm -rf ~/.config/nvim
+rm -rf ~/.local/state/nvim
+rm -rf ~/.local/share/nvim
+
+
+---
+
+📥 Step 3 – Download & Install SunVim
+
+Option A: Safe Install (Recommended)
+
+Run Neovim with a custom config name so your old setup stays intact:
+
+# Create a SunVim folder
+mkdir -p ~/.config/sunvim
+
+# Download SunVim.zip
+curl -L -o ~/SunVim.zip https://github.com/Vishnu-yes/Neovim-to-IDE/raw/main/SunVim.zip
+
+# Extract into the SunVim config folder
+unzip ~/SunVim.zip -d ~/.config/sunvim
+
+# Launch Neovim with SunVim
+NVIM_APPNAME=sunvim nvim
+
+Option B: Full Replace
+
+# Download SunVim.zip
+curl -L -o ~/SunVim.zip https://github.com/Vishnu-yes/Neovim-to-IDE/raw/main/SunVim.zip
+
+# Extract into Neovim config folder
+unzip ~/SunVim.zip -d ~/.config/nvim
+
+# Launch Neovim
+nvim
+
+
+---
+
+▶️ Step 4 – Plugin Setup
+
+Start Neovim and wait for lazy.nvim to install plugins automatically.
+
+
+---
+
+🔧 Step 5 – Install LSP Servers (Manually)
+
+Mason is not included. Install language servers yourself:
+
+# JavaScript / TypeScript
+npm i -g typescript typescript-language-server
+
+# Python
+pipx install pyright-langserver  # or
+npm i -g pyright
+
+# C / C++
+sudo apt install clangd
+
+👉 After installation, configure LSP paths in IDE.lua.
+
+
+---
+
+🎨 Themes
+
+Switch themes easily:
+
+:colorscheme <Tab>
+
+Use arrow keys to cycle, then press Enter.
+
+
+---
+
+⚠️ Notes
+
+Deprecated API warnings may appear — they don’t break Neovim.
+
+SunVim is designed for Neovim 0.11.4.
+
+The config is easy to edit since it’s just one file.
+
+
+
+---
+
+✅ Uninstall / Revert
+
+To restore your old setup:
+
+rm -rf ~/.config/nvim
+cp -r ~/nvim-backup-YYYYMMDD ~/.config/nvim
+
+---
+
+Features --------->
 
 ✨ Highlights
 
@@ -15,6 +196,8 @@ Especially friendly for arm64 users by avoiding mason.nvim and supporting manual
 
 lazy.nvim – modern, fast plugin manager.
 → Ensures smooth lazy-loading and minimal startup time.
+
+Full Control of Plugins/UI/Basics
 
 
 🎨 UI & Themes
@@ -64,53 +247,6 @@ Conform.nvim – automatic code formatting.
 nvim-dap – Debug Adapter Protocol client.
 
 nvim-dap-ui – debugging UI with REPL, breakpoints, and step controls.
-
-
-
----
-
-📦 Installation
-! Backup your current configs via 
-``` bash
-cp ~/.configs/nvim/init.lua ~/YourBacupFolder/
-```
-! Make sure to run these command one by one 
-Only for Linux/MacOs (⚠️ If Not then Don't Try this!)
-``` bash
-rm -rf ~/.config/nvim
-rm -rf ~/.local/state/nvim
-rm -rf ~/.local/share/nvim
-```
-1. Download this IDE.lua file into your Neovim config folder:
-Remember I created this for Nvim 0.11.4 for further versions I will work.
-```bash
-#make sure you have curl!
-curl -o ~/.config/nvim/init.lua https://raw.githubusercontent.com/Vishnu-yes/Neovim-to-IDE/main/IDE.lua
-
-#wget
-wget -O ~/.config/nvim/init.lua https://raw.githubusercontent.com/Vishnu-yes/Neovim-to-IDE/main/IDE.lua
-```
-
-⚠️ You may see some warnings of Deprecated things don't worry they are normal won't break your nvim. 
-Use Ai or Professionals to get rid of the problem. But as of now even Claude and Chatgpt are using same type of deprecated things that's why You have to wait some months even years to get rid of those errors. 
-
-⚠️ Don't worry you are free to manipulate this config as it is just a single file and only 400+ lines of code (September, 2025 )
-
-⚠️ You can easily change themes via esc + : + colorscheme + tab key  + Left/Right keys for toggling up and down + Enter 
-2. Start Neovim and let lazy.nvim install plugins.
-
-
-3. Install LSP servers manually (no Mason):
-``` bash
-npm i -g pyright typescript typescript-language-server
-sudo apt install clangd
-pipx install pyright-langserver
-```
-Then configure server paths inside IDE.lua.
-Yeah you have to configure according to your Version 
-1st Download the Lsps etc and paste them in Lsp sections.
-You must Use Ai for any edit. 
-
 
 
 
@@ -182,8 +318,9 @@ IDE Features → Git, debugging, formatting, autocompletion, and themes in one p
 Customizable → Edit the plugin tables in IDE.lua to add/remove plugins easily.
 
 
-~Config Generated with months of efforts done by Chatgpt/Claude. Onecd this cobfig was more than 900+ lines but Chatgpt made it small with many unique features.
+~Config Generated with months of efforts done by Chatgpt/Claude.
+Onece this cobfig was more than 900+ lines but Chatgpt made it small with many unique features.
 ~This config was created to get the experience of IDE for Termux/Arm64/Aarch64 terminals.
-~Some themes may feel broken as theybare desgined for simplicity, use the modern themes for better modern Support. 
+~Some themes may feel broken as most of them are desgined for simplicity, use the modern themes for better modern Support. 
 #Jay Jagannath Ji!
 ---
