@@ -76,13 +76,13 @@ Works best with Neovim 0.11.4 (future versions may require adjustments).
 ---
 
 📦 Step 1 – Backup Your Current Config
-
+```bash
 # Backup your Neovim config
 cp -r ~/.config/nvim ~/nvim-backup-$(date +%Y%m%d)
 
 # (Optional) also backup plugin data
 cp -r ~/.local/share/nvim ~/nvim-data-backup-$(date +%Y%m%d)
-
+```
 
 ---
 
@@ -90,11 +90,11 @@ cp -r ~/.local/share/nvim ~/nvim-data-backup-$(date +%Y%m%d)
 
 ⚠️ Do this only if you want to fully replace your config.
 If you just want to test SunVim safely, skip this and see “Safe Install” below.
-
+```bash
 rm -rf ~/.config/nvim
 rm -rf ~/.local/state/nvim
 rm -rf ~/.local/share/nvim
-
+```
 
 ---
 
@@ -103,7 +103,7 @@ rm -rf ~/.local/share/nvim
 Option A: Safe Install (Recommended)
 
 Run Neovim with a custom config name so your old setup stays intact:
-
+```bash
 # Create a SunVim folder
 mkdir -p ~/.config/sunvim
 
@@ -115,9 +115,11 @@ unzip ~/SunVim.zip -d ~/.config/sunvim
 
 # Launch Neovim with SunVim
 NVIM_APPNAME=sunvim nvim
+```
 
 Option B: Full Replace
 
+```bash
 # Download SunVim.zip
 curl -L -o ~/SunVim.zip https://github.com/Vishnu-yes/Neovim-to-IDE/raw/main/SunVim.zip
 
@@ -126,7 +128,7 @@ unzip ~/SunVim.zip -d ~/.config/nvim
 
 # Launch Neovim
 nvim
-
+```
 
 ---
 
@@ -141,6 +143,7 @@ Start Neovim and wait for lazy.nvim to install plugins automatically.
 
 Mason is not included. Install language servers yourself:
 
+```bash
 # JavaScript / TypeScript
 npm i -g typescript typescript-language-server
 
@@ -150,7 +153,7 @@ npm i -g pyright
 
 # C / C++
 sudo apt install clangd
-
+```
 👉 After installation, configure LSP paths in IDE.lua.
 
 
@@ -173,7 +176,7 @@ Deprecated API warnings may appear — they don’t break Neovim.
 
 SunVim is designed for Neovim 0.11.4.
 
-The config is easy to edit since it’s just one file.
+The config is easy to edit since it’s divided into easy to manage parts.
 
 
 
@@ -183,9 +186,10 @@ The config is easy to edit since it’s just one file.
 
 To restore your old setup:
 
+```
 rm -rf ~/.config/nvim
 cp -r ~/nvim-backup-YYYYMMDD ~/.config/nvim
-
+```
 ---
 
 Features --------->
